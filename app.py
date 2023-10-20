@@ -1,7 +1,7 @@
+import os
 import gradio as gr
-from PIL import Image
 
-example_doc_path = ['E:\Pictures\pixiv\dreaming..._69894409.png', 'E:\Pictures\gochiusa_aprilfool2021_chino.png']
+example_doc_path = ['image1.jpg', 'image2.jpg']
 example_question = ['q1', 'q2']
 
 with gr.Blocks(title='DocVQA') as demo:
@@ -15,7 +15,7 @@ with gr.Blocks(title='DocVQA') as demo:
             with gr.Row():
                 #clear = gr.Button(value='Clear')
                 submit_btn = gr.Button(value='Submit')
-    gr.Examples(examples=[list(pair) for pair in zip(example_doc_path, example_question)], 
+    gr.Examples(examples=[list(pair) for pair in zip([os.path.join(os.path.join(os.path.dirname(__file__), 'image'), path) for path in example_doc_path], example_question)], 
                 inputs=[image_board, question_text])
     
     # submit
